@@ -63,7 +63,7 @@ if 1:
     def fitRF(df):
         varsX = df[selected_columns]
         vary = df['scores']
-        regr = RandomForestRegressor(random_state=0, n_jobs = -1)
+        regr = RandomForestRegressor(n_jobs = -1)
         regr.fit(varsX, vary)
         return regr
     
