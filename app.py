@@ -7,8 +7,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.ensemble import RandomForestRegressor
 
 st.set_page_config(
-    page_title="Forecast Dashboard",
-    page_icon=":chart_with_upwards_trend:",
+    page_title="Anomaly Explore",
+    page_icon=":fire:",
     layout="wide",
 )
 
@@ -63,7 +63,7 @@ if 1:
     def fitRF(df):
         varsX = df[selected_columns]
         vary = df['scores']
-        regr = RandomForestRegressor(n_jobs = -1)
+        regr = RandomForestRegressor(random_state=0, n_jobs = -1)
         regr.fit(varsX, vary)
         return regr
     
@@ -82,5 +82,9 @@ if 1:
     
     st.plotly_chart(plotFeatImp)
 
-
+st.download_button(
+        "Download data with anomaly scores added",
+        data=df.to_csv(index=False),
+        file_name="anomaly_data.csv",
+    )
 
